@@ -1,0 +1,13 @@
+---
+description: Module for connecting to Ubidots IoT Platform
+fullname: lib.ubidots.iot
+info:
+    chip_manufacturer: '-'
+    chip_name: '-'
+    name: Zerynth Ubidots Library
+    type: IoT Cloud
+keywords:
+- ubidots
+- iot
+title: Ubidots IoT Library
+...

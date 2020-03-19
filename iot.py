@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: lorenzo
 # @Date:   2017-09-21 16:17:16
-# @Last Modified by:   Lorenzo
-# @Last Modified time: 2017-11-16 15:32:40
+# @Last Modified by:   m.cipriani
+# @Last Modified time: 2020-01-30 17:04:43
 
 """
 .. module:: iot
@@ -32,7 +32,10 @@ class UbiMQTTClient(mqtt.Client):
         self.ssl_ctx = ssl_ctx
 
     def connect(self, port=8883):
-        mqtt.Client.connect(self, self.endpoint, 60, port=port, ssl_ctx=self.ssl_ctx)
+        if port == 1883:
+            mqtt.Client.connect(self, self.endpoint, 60, port=port)
+        else:
+            mqtt.Client.connect(self, self.endpoint, 60, port=port, ssl_ctx=self.ssl_ctx)
 
 
 class Device:
@@ -121,4 +124,3 @@ The Device class
                 self._variables_cbks[device] = {}
         self._variables_cbks[device][variable] = callback
         self.mqtt.on(mqtt.PUBLISH, self._handle_variable_update, self._is_variable_update)
-
